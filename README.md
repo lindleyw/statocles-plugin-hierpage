@@ -12,3 +12,41 @@ according to their relative location from here.
 Optionally, documents containing multiple named anchors will have a list of those anchors,
 which will only be emitted within that document itself. See [note](http://stackoverflow.com/questions/5319754/cross-reference-named-anchor-in-markdown) on
 defining named anchors in Markdown.
+
+In `_save_pagelist`,
+
+    map { $_->{type} eq 'text/html' ? ref $_->{app} : () } @{$args[0]->{pages}}
+
+produces, e.g., `Statocles::App::Blog`
+
+    join(',', sort map { $_->{type} eq 'text/html' ? keys %{$_} : () } @{$args[0]->{pages}})
+
+produces
+
+    _links,_pages,app,data,date,document,layout,markdown,path
+    search_change_frequency,search_priority,site,
+    template,title,type
+
+while
+
+    map { $_->{type} eq 'text/html' ? scalar $_->{path}->stringify : () } @{$args[0]->{pages}}
+
+produces an array containing `'/blog/index.html'`.
+
+Also,
+        
+    map { (ref $_->app) . " : " . $_->path . " : " . $_->document->title } grep { $_->isa( 'Statocles::Page::Document' ) } @{$site->pages}  
+    0  'Statocles::App::Basic : /index.html : Main Page'
+    1  'Statocles::App::Blog : /blog/2016/02/16/first-post/index.html : First Post'
+    2  'Statocles::App::Basic : /pagexx/another.html : Another Page'
+
+Could derive 'app name' with `((ref $_->app) =~ s/Statocles::App:://r`
+
+== Debugging ==
+
+I used this command line:
+
+    $ perl -d -I /home/bill/Documents/share/company/products/statocles-plugin-hierpage/lib \
+      `which statocles` build
+
+
