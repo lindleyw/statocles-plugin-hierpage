@@ -58,6 +58,8 @@ package Statocles::Plugin::HierPage v0.0.01 {
           @{$_ugly_hack}; # TODO: @{$args->pages};
         $DB::single = 1;   # XXX
 
+        # NOTE: When finding document nesting levels, consider
+        # $_->app->url_root although '/' is usually the site's root
 
         my $page_info = join ( "\n",
                                sort                # XXX asciibetically by href url, eww
