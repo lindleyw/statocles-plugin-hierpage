@@ -56,12 +56,12 @@ package Statocles::Plugin::HierPage v0.0.01 {
         # XXX TODO: Use site's cached page list
         my @app_page_list = grep { defined $_->app && $_->app->isa( $this_page_app ) }
           @{$_ugly_hack}; # TODO: @{$args->pages};
-        # $DB::single = 1;   # XXX
+        $DB::single = 1;   # XXX
 
 
         my $page_info = join ( "\n",
                                sort                # XXX asciibetically by href url, eww
-                               map { '   * <a href="' . $_->site->url($_->path) .
+                               map { '   * <a href="' . $_->path . # $_->site->url($_->path) .
                                        '">' . $_->document->title . "</a>\n" }
                                grep { $_->isa( $this_doc_class ) } @app_page_list
                              );
