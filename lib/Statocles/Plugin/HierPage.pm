@@ -64,7 +64,7 @@ package Statocles::Plugin::HierPage v0.0.01 {
         my $page_info = join ( "\n",
                                sort                # XXX asciibetically by href url, eww
                                map { '   * <a href="' . $_->path . # $_->site->url($_->path) .
-                                       '">' . $_->document->title . "</a>\n" }
+                                       '">' . $_->document->title . "</a>" }
                                grep { $_->isa( $this_doc_class ) } @app_page_list
                              );
 
