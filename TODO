@@ -1,0 +1,6 @@
+
+
+* use 'pages' attribute
+  Contains cached list of pages; added in Statocles v0.070
+  https://github.com/preaction/Statocles/commit/c6709d60343b8ab92ef29f10b3bc83f578ec7038
+
