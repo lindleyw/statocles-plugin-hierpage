@@ -46,7 +46,6 @@ Could derive 'app name' with `((ref $_->app) =~ s/Statocles::App:://r`
 
 I used this command line:
 
-    $ perl -d -I /home/bill/Documents/share/company/products/statocles-plugin-hierpage/lib \
-      `which statocles` build
+    $ perl -d -I /home/my/path/to/statocles-plugin-hierpage/lib `which statocles` build
 
 
